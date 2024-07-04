@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +27,34 @@ public class UsuarioController {
 
     @PostMapping("/registrar")
     public String registrarUsuario(Usuario usuario, Model model, @RequestParam("foto") MultipartFile foto) {
-        usuarioService.crearUsuario(usuario, model, foto);
-        return "registrar_usuario";
+       
+    	usuarioService.crearUsuario(usuario, model, foto);
+        
+    	return "registrar_usuario";
     }
+    
+
+	@GetMapping("/")
+	public String index(Model model) {
+		model.addAttribute("usuario", new Usuario());
+		return "login";
+	}
+	
+	@PostMapping("/login")
+	public String login(Usuario usuarioEntity, Model model, HttpSession session) {
+		boolean usuarioValido = usuarioService.validarUsuario(usuarioEntity, session);
+		if(usuarioValido) {
+			return "redirect:/menu";
+		}
+		model.addAttribute("loginInvalido", "No existe el usuario");
+		model.addAttribute("usuario", new Usuario());
+		return "login";
+	}
+	
+	/*@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}*/
+    
 }

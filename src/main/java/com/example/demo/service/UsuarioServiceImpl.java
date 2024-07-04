@@ -23,7 +23,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	
 	@Override
 	public void crearUsuario(Usuario usuario, Model model, MultipartFile foto) {
-		// guardar foto
+		// guarda foto
 		String nombreFoto = Utilitarios.guardarImagen(foto);
 		usuario.setUrlImagen(nombreFoto);
 		
@@ -31,25 +31,39 @@ public class UsuarioServiceImpl implements UsuarioService {
 		String passwordHash = Utilitarios.extraerHash(usuario.getPassword());
 		usuario.setPassword(passwordHash);
 		
-		// guardar usuario
+		// guarda usuario
 		usuarioRepository.save(usuario);
 		
-		// responder a la vista
+		// responder vista
 		model.addAttribute("registroCorrecto", "Registro Correcto");
 		model.addAttribute("usuario", new Usuario());
 		
 	}
 
 	@Override
-	public boolean validarUsuario(Usuario usuario, HttpSession session) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean validarUsuario(Usuario usuarioEntity, HttpSession session) {
+		Usuario usuarioEncontradoPorcCorreo = 
+				usuarioRepository.findByCorreo(usuarioEntity.getCorreo());
+		
+		
+		if(usuarioEncontradoPorcCorreo == null) {
+			return false;
+		}
+
+		if(!Utilitarios.checkPassword(usuarioEntity.getPassword(), 
+				usuarioEncontradoPorcCorreo.getPassword())) {
+			return false;
+		}
+		session.setAttribute("usuario", usuarioEncontradoPorcCorreo.getCorreo());
+		
+		return true;
 	}
+	
+
 
 	@Override
 	public Usuario buscarUsuarioPorCorreo(String correo) {
-		// TODO Auto-generated method stub
-		return null;
+		return usuarioRepository.findByCorreo(correo);
 	}
 
 }
