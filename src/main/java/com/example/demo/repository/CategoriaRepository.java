@@ -3,10 +3,9 @@ package com.example.demo.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.entity.Pedido;
-import com.example.demo.entity.Usuario;
+import com.example.demo.entity.Categoria;
 
 @Repository
-public interface PedidoRepository extends JpaRepository<Pedido, Long> {
+public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
 
 }

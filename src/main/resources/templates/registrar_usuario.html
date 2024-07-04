@@ -1,55 +1,65 @@
-<!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-
-    <title>Registrar Usuario</title>
+    <title>Registro de Usuarios</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container mt-5">
-        <div th:if="${registroCorrecto}" class="alert alert-success" role="alert">
-            <span th:text="${registroCorrecto}"></span>
+<div class="container mt-5">
+    <div th:if="${registroCorrecto}" class="alert alert-success" role="alert">
+        <span th:text="${registroCorrecto}"></span>
+    </div>
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Registrar Usuario</h3>
         </div>
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title text-center">Registrar Usuario</h3>
-            </div>
-            <div class="card-body">
-                <form th:action="@{/registrar}" method="post" th:object="${usuario}" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <input th:field="*{correo}" type="email" class="form-control" placeholder="Correo electrónico" required>
+        <div class="card-body">
+            <form th:action="@{/registrar}" method="post" th:object="${usuario}" enctype="multipart/form-data">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="validationCustom01">Correo</label>
+                        <input th:field="*{correo}" type="email" class="form-control" id="validationCustom01" required>
                     </div>
-                    <div class="form-group">
-                        <input th:field="*{password}" type="password" class="form-control" placeholder="Contraseña" required>
+                    <div class="form-group col-md-6">
+                        <label for="validationCustom06">Password</label>
+                        <input th:field="*{password}" type="password" class="form-control" id="validationCustom06" required>
                     </div>
-                    <div class="form-group">
-                        <input th:field="*{nombres}" type="text" class="form-control" placeholder="Nombres" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="validationCustom02">Nombres</label>
+                        <input th:field="*{nombre}" type="text" class="form-control" id="validationCustom02" required>
                     </div>
-                    <div class="form-group">
-                        <input th:field="*{apellidos}" type="text" class="form-control" placeholder="Apellidos" required>
+                    <div class="form-group col-md-6">
+                        <label for="validationCustom04">Apellidos</label>
+                        <input th:field="*{apellidos}" type="text" class="form-control" id="validationCustom04" required>
                     </div>
-                    <div class="form-group">
-                        <input th:field="*{FechaDeNacimiento}" type="date" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlFile1">Foto Usuario</label>
-                        <input name="foto" accept="image/*" required type="file" class="form-control-file" id="exampleFormControlFile1">
-                    </div>
-                    <div class="form-group text-center">
-                        <a class="btn btn-secondary mr-2" href="/">Ir al Login</a>
-                        <button class="btn btn-primary" type="submit">Registrar</button>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="form-group">
+                    <label for="validationCustom05">Fecha Nacimiento</label>
+                    <input th:field="*{fecha_nacimiento}" type="date" class="form-control" id="validationCustom05" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlFile1">Foto Usuario</label>
+                    <input name="foto" accept="image/*" required type="file" class="form-control-file" id="exampleFormControlFile1">
+                </div>
+                <div class="form-group text-center">
+                    <button class="btn btn-primary mr-2" type="submit">Registrar</button>
+                    <a class="btn btn-secondary" href="/">Ir al Login</a>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
 </body>
 </html>

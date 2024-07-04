@@ -1,13 +1,10 @@
 package com.example.demo.entity;
 
-import java.time.LocalDate;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -17,27 +14,18 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "detalle_pedido")
+@Table(name = "tb_categoria")
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class DetallePedido {
-
+public class Categoria {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long detalleId;
-	
-	private Integer cantidad;
-	
-	@ManyToOne
-	@JoinColumn(name = "producto_id", nullable = false)
-	private Producto productoEntity;
-	
-	@ManyToOne
-	@JoinColumn(name = "pedido_id", nullable = false)
-	private Pedido pedido;
-	
+	private Integer categoria_id;
+
+	@Column(name = "nombre_categoria", nullable = false, length = 50)
+	private String nombre_categoria;
 }

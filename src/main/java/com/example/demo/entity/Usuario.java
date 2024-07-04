@@ -1,10 +1,14 @@
 package com.example.demo.entity;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,8 +28,11 @@ public class Usuario {
 	@Id
 	private String correo;
 	private String password;
-	private String nombres;
+	private String nombre;
 	private String apellidos;
-	private Date FechaDeNacimiento;
+
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	@Column(name = "fecha_nacimiento", nullable = false)
+	private LocalDate fecha_nacimiento;
 	private String urlImagen;
 }
