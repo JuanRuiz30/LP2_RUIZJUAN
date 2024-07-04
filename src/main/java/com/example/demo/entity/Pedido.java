@@ -27,7 +27,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Pedido {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long pedidoId;
@@ -35,10 +34,10 @@ public class Pedido {
 	private LocalDate fechaCompra;
 	
 	@ManyToOne
-	@JoinColumn(name = "usuario_id" , nullable = false)
-	private Usuario usuario;
+	@JoinColumn(name = "usuario_id", nullable = false)
+	private Usuario usuarioEntity;
 	
-	@OneToMany(mappedBy = "pedidoEntity", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
 	private List<DetallePedido>detallePedido;
 	
 }
